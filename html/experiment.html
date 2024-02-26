@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Experiment</title>
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- uncomment for Jatos ! -->
+    <script src="jatos.js"></script>
+    <!-- <script type="module" src="scripts/main.js"></script> -->
+    <script>0</script>
+  </head>
+  <body>
+    <script type="module">
+      import {runExperiment, questionDict} from "./scripts/helper.js";
+
+    window.addEventListener('unload', function(e) {
+    
+    localStorage.clear();
+
+    });
+      async function startExperiment() {
+
+        jatos.onLoad(async function () {
+            let keys = Object.keys(questionDict);
+
+            // Check if there is a saved state in local storage
+            if (localStorage.getItem('experimentState') === null) {
+                // No saved state, start fresh
+                await runExperiment(keys);
+            } else {
+                // Continue from saved state
+                let experimentState = JSON.parse(localStorage.getItem('experimentState'));
+                let currentIndex = experimentState.currentIndex;
+                await runExperiment(keys.slice(currentIndex));
+            }
+
+        }); // jatos.onLoad
+        
+        }
+        startExperiment();
+    </script>
+    <!-- <img src="../images/background/GUI_Bakcground4.png" width="100%" height="100%" alt=""> -->
+    <div id="bg"></div>
+    <div id="question"></div>
+    <div id="winner-image-container"></div>
+    
+    <div id = "images-contain">
+        <div id="image-container" class="image-container"></div>
+        <div id="image-container-1" class="image-container"></div>
+        <div id="image-container-2" class="image-container"></div>
+    </div>
+    <!-- <div id="button-container"></div> -->
+    <!-- <img id="flag" src="../images/empty_flag/empty_flag.png" alt="empty_flag"> -->
+    <!-- <div id = "button-container"></div> -->
+  </body>
+</html>

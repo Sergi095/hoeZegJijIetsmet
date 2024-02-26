@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>experiment</title>
+    <!-- <link rel="stylesheet" href="css/instructions.css" /> -->
+    <style type="text/css">
+        /* pushes the page to the full capacity of the viewing area */
+        html {height:100%;}
+        body {height:100%; margin:0; padding:0;}
+        /* prepares the background image to full capacity of the viewing area */
+        /* #bg {position:fixed; top:0; left:0; width:100%; height:100%;} */
+        /* places the content ontop of the background image */
+        #content {position:relative; z-index:1; width: 50%; margin: 0 auto; padding-top: 10%;}
+        p {text-align: left; font-family:'Lexend', sans-serif; font-size: 25px; color: #000000; line-height: 1.5em;margin-left: 2%;}
+        h1 {text-align: left;font-family:'Lexend', sans-serif;margin-left: 2%;}
+
+        #bg-fig {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-image: url("../images/background/GUI_Bakcground4.png"); */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+
+        #flag {
+            position: fixed;
+            /* object-fit: contain; */
+            top: 18%;
+            left: 80.6%;
+            width: 15%;
+            height: 20%;
+            transform: rotate(3deg);
+        
+        }
+        
+        button {
+    font-family: 'Lexend', sans-serif;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin: 20px auto;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+    </style>
+
+    <!-- uncomment for Jatos ! -->
+    <script src="jatos.js"></script>
+    <!-- <script type="module" src="scripts/main.js"></script> -->
+    <script>0</script>
+  </head>
+  <body>
+    <img id="bg-fig" src="images/background/GUI_Background3.png" width="100%" height="100%" alt="">
+    <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag">
+    <!-- <img src="../images/background/GUI_Bakcground 6_overlay.png" padding-right="30%" width="90%" height="90%" alt=""> -->
+    <img src="images/background/GUI_Bakcground 6_overlay.png" style="margin-left: 5%; position: fixed;" width="90%" height="90%" alt="">
+
+    <button>Begin met de eerste vlag!</button>
+    <script>
+    // window.addEventListener('unload', function(e) {
+    // localStorage.clear();
+    // });
+function dataToCsv() {
+    let csv = 'question-type,answer\n';
+    let data = {}; // declare data with let
+
+    console.log(localStorage); // log entire localStorage
+
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key) && key.startsWith('form')) {
+            let formData = localStorage.getItem(key);
+            try {
+                formData = JSON.parse(formData); // try-catch block to handle JSON parsing errors
+            } catch (e) {
+                console.error(`Error parsing data for key ${key}: `, e);
+                continue;
+            }
+            for (let field in formData) {
+                data[field] = formData[field];
+            }
+        }
+    }
+
+    // console.log(`data: ${JSON.stringify(data)}`); // stringify data for logging
+
+    for (let key in data) { 
+        // console.log(`key: ${key}, value: ${data[key]}`);
+       // rename keys
+       var key_ = ""
+        if (key === 'age') {
+            key_ = 'Age';
+        } else if (key === 'followUp') {
+            key_ = 'Into_water';
+        } else if (key === 'flag') {
+            key_ = 'Seen_flag';
+        } else if (key === 'nature') {
+            key_ = 'visit_water';
+        } else if (key === 'consent') {
+            key_ = 'Consent';
+        } else if (key === 'gender') {
+            key_ = 'Gender';
+        }
+        csv += key_ + ',' + data[key] + '\n';
+    }
+    return csv;
+}
+      document.querySelector("button").addEventListener("click", function() {
+        jatos.startNextComponent(dataToCsv());
+        });
+    </script>
+  </body>
+</html>

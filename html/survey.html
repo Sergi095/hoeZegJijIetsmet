@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demographics</title>
+    <link rel="stylesheet" href="css/survey.css">
+    <script src="jatos.js"></script>
+    <script>0</script>
+</head>
+<body>
+        <img id="bg-fig" src="images/background/GUI_Bakcground4.png" width="100%" height="100%" alt="">
+        <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag"></div>
+    <div id="content">
+        <h1>Eerst een paar vragen</h1>
+
+        <div class="form-container">
+            <form id="form-ageForm" class="form-step">
+                <p>Wat is je leeftijd? Vul het aantal jaar in.</p><br>
+                <input type="number" name="age" id="age" min="0" max="100" required oninvalid="this.setCustomValidity('Vul het aantal jaar in')" oninput="this.setCustomValidity('')">
+                
+            <div class="buttonHolder">
+                <input type="hidden" value="Volgende">
+                <button type="submit">Volgende</button>
+            </div>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <form id="form-parentalConsent" class="conditional">
+                <p>We gaan ervan uit dat je van je ouders of verzorgers mee mag doen. Vraag het even, als dat kan.</p><br>
+                <input type="radio" id="yes" name="consent" value="yes" class="inline-radio" required="required" oninvalid="this.setCustomValidity('Kies een van deze opties')" oninput="this.setCustomValidity('')">
+                <label for="yes" class="text">Mijn ouder(s)/verzorger(s) vinden het goed dat ik mee doe.</label><br>
+                <input type="radio" id="no" name="consent" value="no" class="inline-radio" oninput="document.getElementById('yes').setCustomValidity('')">
+                <label for="no" class="text">Ik mag niet meedoen (het onderzoek stopt)</label><br>
+                <input type="hidden" value="Volgende">
+                <button type="submit">Volgende</button>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <form id="form-gender" class="form-step">
+                <p>Ben je een</p><br>
+                <input type="radio" name='gender' id="female" value="female" class="inline-radio" required="required" oninvalid="this.setCustomValidity('Kies een van deze opties')" oninput="this.setCustomValidity('')">
+                <label for="female" class="text">Meisje / Vrouw</label><br>
+                <input type="radio" name='gender' id="male" value="male" class="inline-radio" oninput="document.getElementById('female').setCustomValidity('')">
+                <label for="male" class="text">Jongen / Man</label><br>
+                <input type="radio" name='gender' id="other" value="other" class="inline-radio" oninput="document.getElementById('female').setCustomValidity('')">
+                <label for="other" class="text">Allebei / Geen van beide</label><br>
+                <input type="radio" name='gender' id="preferNotToSay" value="preferNotToSay" class="inline-radio" oninput="document.getElementById('female').setCustomValidity('')">
+                <label class="text" for="preferNotToSay">Dat zeg ik liever niet</label><br>
+                <input type="hidden" value="Volgende">
+            <div class="button">
+                <button type="submit">Volgende</button>
+            </div>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <form id="form-nature" class="form-step">
+                <p>Zwemmen, sporten, of spelen in het water kan in zwembaden, maar ook in natuurwater. Daarmee bedoelen we rivieren, plassen, meren en de zee.  
+                    Ben je in de afgelopen 12 maanden wel eens naar een plek met natuurwater gegaan? 
+                    Het maakt niet uit of dat in Nederland of een ander land was. </p><br>
+                <input type="radio" name="nature" id="No" value="no" class="inline-radio" required oninvalid="this.setCustomValidity('Kies een van deze opties')" oninput="this.setCustomValidity('')">
+                <label for="no" class="text">Nee, nooit.</label><br>
+                <input type="radio" name="nature" id="1-5" value="1-5" class="inline-radio" oninput="document.getElementById('No').setCustomValidity('')">
+                <label for="1-5" class="text">Ongeveer 1 tot 5 keer.</label><br>
+                <input type="radio" name="nature" id="more than 5" value="more than 5" class="inline-radio" oninput="document.getElementById('No').setCustomValidity('')">
+                <label for="more than 5" class="text">Meer dan 5 keer</label><br>
+                <input type="radio" name="nature" id="I don't know" value="I don't know" class="inline-radio" oninput="document.getElementById('No').setCustomValidity('')">
+                <label for="I don't know" class="text">Ik weet het niet</label><br>
+                <input type="hidden" value="Volgende">
+                <button type="submit">Volgende</button>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <form id="form-natureFollowUp" class="conditional">
+                <!-- only if the previous answer is "Nee, nooit" -->
+                <p>Ging je toen wel eens het water in?</p><br>
+                <input type="radio" name="followUp" id="noFollowUp" value="no" class="inline-radio" required oninvalid="this.setCustomValidity('Kies een van deze opties')" oninput="this.setCustomValidity('')">
+                <label for="noFollowUp" class="text">Nee</label><br>
+                <input type="radio" name="followUp" id="feet" value="only feet" class="inline-radio" oninput="document.getElementById('noFollowUp').setCustomValidity('')">
+                <label for="feet" class="text">Alleen mijn voeten</label><br>
+                <input type="radio" name="followUp" id="middle" value="only middle" class="inline-radio" oninput="document.getElementById('noFollowUp').setCustomValidity('')">
+                <label for="middle" class="text">Ja, alleen tot mijn middel</label><br>
+                <input type="radio" name="followUp" id="stand" value="where I could stand" class="inline-radio" oninput="document.getElementById('noFollowUp').setCustomValidity('')">
+                <label for="stand" class="text">Ja, tot waar ik kon nog staan</label><br>
+                <input type="radio" name="followUp" id="noStand" value="where I could not stand" class="inline-radio" oninput="document.getElementById('noFollowUp').setCustomValidity('')">
+                <label for="noStand" class="text">Ja, ook waar ik niet meer kon staan</label><br>
+                <input type="hidden" value="Volgende">
+                <button type="submit">Volgende</button>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <form id="form-flags" class="form-step">
+                <p>Soms kan zwemmen gevaarlijk zijn. In zee kan bijvoorbeeld stroming staan. 
+                    Dan trekt het water je mee, waardoor je kunt wegdrijven van de kust. 
+                    In meren zit soms blauwalg, dat zijn heel kleine beestjes waarvan je ziek kunt worden. 
+                    Daarom staan op plekken waar je kunt zwemmen wel eens vlaggen. 
+                    Die geven aan of het veilig is om het water in te gaan. 
+                    Heb je wel eens zo'n vlag gezien?</p><br>
+                <input type="radio" name="flag" id="noFlag" value="no" class="inline-radio" required oninvalid="this.setCustomValidity('Kies een van deze opties')" oninput="this.setCustomValidity('')">
+                <label for="noFlag" class="text">Nee, nog nooit</label><br>
+                <input type="radio" name="flag" id="maybeFlag" value="maybe" class="inline-radio" oninput="document.getElementById('noFlag').setCustomValidity('')">
+                <label for="maybeFlag" class="text">Ik weet het niet</label><br>
+                <input type="radio" name="flag" id="onceFlag" value="once" class="inline-radio" oninput="document.getElementById('noFlag').setCustomValidity('')">
+                <label for="onceFlag" class="text">Ja, die heb ik wel eens een keer gezien</label><br>
+                <input type="radio" name="flag" id="multipleFlag" value="multiple" class="inline-radio" oninput="document.getElementById('noFlag').setCustomValidity('')">
+                <label for="multipleFlag" class="text">Ja, die heb ik meerdere keren gezien</label><br>
+                <input type="hidden" value="Volgende">
+                <button type="submit">Volgende</button>
+            </form>
+        </div>
+    </div>
+    
+        <script type="module">
+            import {replacePage} from './scripts/stop_continue.js';
+            window.addEventListener('unload', function(e) {
+    localStorage.clear();
+    });
+jatos.onLoad(function () {
+    // jatos.submitResultData(dataToCsv());
+// deleting previous info
+for(let i = 0; i < localStorage.length; i++) {
+let key = localStorage.key(i);
+if(key.startsWith('form')) {
+    localStorage.removeItem(key);
+}
+}
+
+var forms = document.querySelectorAll('form.form-step');
+var currentFormIndex = 0;
+// console.log(forms);
+
+// Show the first form initially
+showForm(currentFormIndex);
+
+function handleFormSubmit(event) {
+    // jatos.onLoad(function () {
+        event.preventDefault();
+
+        let formData = {};
+        let form = event.target;
+
+        // Check if the form is a conditional form and is currently displayed
+        if (form.classList.contains('form-step') || (form.classList.contains('conditional') && form.style.display !== 'none')) {
+            for (let input of form.elements) {
+                if (input.type === "radio" && input.checked) {
+                    formData[input.name] = input.value;
+                } else if (input.type === "number") {
+                    formData[input.name] = input.value;
+                }
+            }
+        } else {
+            // If it's a conditional form but not displayed, fill with 'NA'
+            for (let input of form.elements) {
+                formData[input.name] = 'NA';
+            }
+        }
+        // console.log(localStorage);
+        localStorage.setItem(form.id, JSON.stringify(formData));
+        // jatos.submitResultData(dataToCsv());
+    // });
+}
+
+// function dataToCsv() {
+//     let csv = 'question-type,answer\n';
+//     let data = {}; // declare data with let
+
+//     // console.log(localStorage); // log entire localStorage
+
+//     for (let key in localStorage) {
+//         if (localStorage.hasOwnProperty(key) && key.startsWith('form')) {
+//             let formData = localStorage.getItem(key);
+//             try {
+//                 formData = JSON.parse(formData); // try-catch block to handle JSON parsing errors
+//             } catch (e) {
+//                 console.error(`Error parsing data for key ${key}: `, e);
+//                 continue;
+//             }
+//             for (let field in formData) {
+//                 data[field] = formData[field];
+//             }
+//         }
+//     }
+
+//     // console.log(`data: ${JSON.stringify(data)}`); // stringify data for logging
+
+//     for (let key in data) { 
+//         // console.log(`key: ${key}, value: ${data[key]}`);
+ 
+//         csv += key_ + ',' + data[key] + '\n';
+//     }
+//     return csv;
+// }
+
+function handleClickAanSlag() {
+    
+        // jatos.submitResultData(dataToCsv());
+        // jatos.startNextComponent(dataToCsv())
+        replacePage('html/explanation.html');
+        // jatos.endStudy();
+    
+}
+
+function showForm(index) {
+
+    if (index < 0 || index >= forms.length) {
+        document.getElementById('content').innerHTML = '<h1>Aan de slag!</h1>';
+        document.getElementById('content').innerHTML += '<p>Je mag vijf keer een vlag ontwerpen. Bovenaan het scherm staat wat de vlag moet betekenen. Voor elke vlag bepaal je hoe jij vindt dat hij eruit moet zien. Hiervoor kies je telkens een kleur, een plaatje, en een vorm voor om het plaatje heen.</p>';
+
+        // document.getElementById('content').innerHTML += '<button onclick="window.location.href=\'experiment.html?startMain=true\'">Klik om verder te gaan</button>';
+        let button = document.createElement('button');
+        button.innerHTML = 'Klik om verder te gaan';
+        button.addEventListener('click', handleClickAanSlag);
+        document.getElementById('content').appendChild(button);
+
+        
+        return;
+    }
+    forms.forEach(function(form, i) {
+    form.style.display = i === index ? 'block' : 'none';
+
+});
+
+    setupFormListeners(index);
+
+    // after the last form is shown, button to start the main experiment is shown
+    //only show the button if the last form is submitted
+
+
+}
+
+function setupFormListeners(index) {
+    forms[index].addEventListener('submit', function(event) {
+        event.preventDefault();
+        // console.log(forms[index].id);
+
+
+
+        if (forms[index].id === 'form-ageForm') {
+            handleAgeForm(index);
+        } else if (forms[index].id === 'form-nature') {
+            handleNatureForm(index);
+        }
+        else {
+            showForm(index + 1);
+        }
+    });
+}
+
+function handleAgeForm(index) {
+    var age = document.getElementById('age').value;
+    // console.log(age);
+    if (age < 16) {
+        console.log('showing parental consent');
+        var submitButton = document.getElementById('form-ageForm').querySelector('button[type="submit"]');
+        submitButton.style.display = 'none';
+        document.getElementById('form-parentalConsent').style.display = 'block';
+        document.getElementById('form-parentalConsent').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var consent = document.querySelector('input[name="consent"]:checked').value;
+
+            if (consent == "no") {
+                alert("Je mag niet meedoen. Het onderzoek stopt.");
+                // location.reload();
+                jatos.endStudy("No parental consent");
+
+            } else {
+                document.getElementById('form-parentalConsent').style.display = 'none';
+                showForm(index + 1);
+            }
+        });
+    
+    } else if (age >= 16) {
+        // console.log('not showing parental consent')
+        showForm(index + 1);
+    }
+}
+
+
+function handleNatureForm(index) {
+    var nature = document.querySelector('input[name="nature"]:checked').value;
+    // console.log(nature);
+    if (nature == '1-5' || nature == 'more than 5' || nature == 'I don\'t know') {
+        var submitButton = document.getElementById('form-nature').querySelector('button[type="submit"]');
+        submitButton.style.display = 'none';
+        document.getElementById('form-natureFollowUp').style.display = 'block';
+        document.getElementById('form-natureFollowUp').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('form-natureFollowUp').style.display = 'none';
+            showForm(index + 1);
+        });
+    } else {
+        showForm(index + 1);
+    }
+}
+    let forms_ = Array.from(document.querySelectorAll('form.form-step'));
+    // Select all forms with class 'conditional'
+    let conditionalForms = Array.from(document.querySelectorAll('form.conditional'));
+
+    // Combine the two arrays
+    forms_ = forms_.concat(conditionalForms);
+    //Attach event listeners to all forms
+    forms_.forEach(function(form) {
+        form.addEventListener('submit', handleFormSubmit);
+
+    });
+
+});
+        </script>
+
+        
+    
+        <!-- <button onclick="window.location.href='survey.html?startMain=true'">Klik om mee te doen</button> -->
+        <!-- <script src="main.js"></script> -->
+</body>
+</html>

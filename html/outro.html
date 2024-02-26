@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Outro</title>
+    <link rel="stylesheet" href="css/outro.css">
+    <script src="jatos.js"></script>
+    <script>0</script>
+</head>
+<body>
+    <img id="bg-fig" src="images/background/GUI_Bakcground4.png" width="100%" height="100%" alt="">
+    <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag">
+    <div id="content">
+        <h1>Dankjewel voor het meedoen!</h1>
+        <p>
+        Jouw ontwerpen helpen ons bij het onderzoeken hoe de vlaggen er uit moeten zien, zodat ze voor iedereen duidelijk zijn. 
+        </p>
+        <h1>Wil je meer weten?</h1>
+        <p>
+            Wil je meer weten over vlaggen bij open water of meedoen aan een ander onderzoek? Laat dan je e-mailadres achter. <br>
+
+            We gebruiken je e-mailadres alleen om je het volgende te sturen: <br>
+        </p>
+        <ul>    
+            <li> informatie over de bestaande veiligheidsvlaggen</li>
+            <li> een uitnodiging voor nog een onderzoek</li>
+        </ul>
+        <!-- <p>
+            Je bent niet verplicht om je e-mail adres te geven. <br>
+            Je e-mailadres wordt niet gekoppeld aan je ontwerpen en niet aan andere mensen gegeven. 
+            We bewaren het maximaal vijf jaar. <br>
+            Je kunt altijd verzoeken om je e-mailadres te laten verwijderen. <br>
+            Schrijf dan een bericht aan Fenne Roefs: f.d.roefs@vu.nl. <br>
+        </p> -->
+        
+
+        <!-- <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag"> -->
+        <div id="button-div" style="display:flex; justify-content: center;" >
+            <!-- <button style="margin-right: 5px;" onclick="window.location.href='survey_email.html?startMain=true'">ja, ik wil meer weten!</button>
+            <button style="margin-left: 5px;" onclick="window.location.href='end_experiment.html?startMain=true'">afsluiten</button> -->
+        </div>
+        <!-- <script src="main.js"></script> -->
+    </div>
+
+    <script type="module">
+        // import {answersToCsv, iterations} from './scripts/helper.js';
+        import {replacePage} from './scripts/stop_continue.js';
+        jatos.onLoad(function() {
+            // create 2 buttons one ending the study and one starting the next component
+            var content = document.getElementById("button-div");
+            var button1 = document.createElement("button");
+            var button2 = document.createElement("button");
+
+            button1.innerHTML = "ja, ik wil meer weten!";
+            button2.innerHTML = "afsluiten";
+            button2.id = "stop";
+
+            button1.style.marginRight = "5px";
+            button2.style.marginLeft = "5px";
+
+            content.appendChild(button1);
+            content.appendChild(button2);
+
+            button1.onclick = function() {
+                // jatos.submitResultData({email: "true"});
+                jatos.startNextComponent("wants to know more");
+            };
+
+            button2.onclick = function() {
+                // jatos.submitResultData({email: "false"});
+                localStorage.clear();
+                jatos.endStudy();
+                // window.location.href='https://www.hoezegjijietsmet.nl/#About';
+                // replacePage("html/end_experiment.html");
+                
+
+
+            };
+        });
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email</title>
+    <link rel="stylesheet" href="css/email.css">
+    <script src="jatos.js"></script>
+    <script>0</script>
+</head>
+<body>
+    <img id='bg-fig' src="images/background/GUI_Bakcground4.png" width="100%" height="100%" alt="">
+    <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag">
+    <div id="content">
+        
+        <h1>Dankjewel voor het meedoen. Wil je meer weten?</h1>
+        <form id="email_above_16">
+            <!-- Internal remark: this applies for participants aged 16+ -->
+            <p>Vink aan wat van toepassing is en vul hieronder je e-mailadres in:</p>
+            <input type="checkbox" id="followup" name="followup" value="followup">
+            <label for="followup">Ik wil graag meedoen aan vervolgonderzoek</label><br>
+            <!-- <input type="checkbox" id="results" name="results" value="results">
+            <label for="results">Ik wil graag mijn resultaten ontvangen</label><br> -->
+            <input type="checkbox" id="info" name="info" value="info">
+            <label for="info">Ik wil graag informatie ontvangen over de bestaande veiligheidsvlaggen, die nu gebruikt worden</label><br>
+            <label for="email">E-mailadres:</label>
+            <input type="email" id="email" name="email" required><br>
+            <!-- <input type="submit" value="Verzenden"> -->
+            <input type="hidden" value="Verzenden">
+
+        </form>
+
+        <form id="email_12_15">
+            <p>Vink aan wat van toepassing is en vul hieronder je e-mailadres in. Vraag je ouder(s) of verzorger(s) om toestemming voor het invullen van je e-mailadres</p>
+            <!-- Internal remark: this applies for participants aged 12-15 -->
+            <input type="checkbox" id="parentalConsent" name="parentalConsent" value="parentalConsent" required>
+            <label for="parentalConsent">Ik heb toestemming van mijn ouder(s) of verzorger(s) voor het invullen van mijn e-mailadres</label><br>
+
+            <input type="checkbox" id="followup" name="followup" value="followup">
+            <label for="followup">Ik wil graag meedoen aan vervolgonderzoek</label><br>
+
+            <!-- <input type="checkbox" id="results" name="results" value="results">
+            <label for="results">Ik wil graag mijn resultaten ontvangen</label><br> -->
+
+            <input type="checkbox" id="info" name="info" value="info">
+            <label for="info">Ik wil graag informatie ontvangen over de bestaande veiligheidsvlaggen, die nu gebruikt worden</label><br>
+
+
+            
+            <label for="email">E-mailadres:</label>
+            <input type="email" id="email" name="email" required><br>
+            <!-- <input type="submit" value="Verzenden"> -->
+            <input type="hidden" value="Verzenden">
+
+        </form>
+
+        <form id="email_below_12">
+            <p> Vink aan wat van toepassing is en vraag je ouder(s) of verzorger(s) om hun e-mailadres in te vullen</p>
+            <!-- Internal remark: this applies for participants aged <12-->
+
+            <input type="checkbox" id="followup" name="followup" value="followup">
+            <label for="followup">Ik wil graag meedoen aan vervolgonderzoek</label><br>
+
+            <!-- <input type="checkbox" id="results" name="results" value="results">
+            <label for="results">Ik wil graag mijn resultaten ontvangen</label><br> -->
+
+            <input type="checkbox" id="info" name="info" value="info">
+            <label for="info">Ik wil graag informatie ontvangen over de bestaande veiligheidsvlaggen, die nu gebruikt worden</label><br>
+
+
+            
+            <label for="email">E-mailadres(in te vullen door ouders/verzorgers):</label>
+            <input type="email" id="email" name="email" required><br>
+            <!-- <input type="submit" value="Verzenden"> -->
+            <input type="hidden" value="Verzenden">
+        </form>
+
+
+        <p>Je bent niet verplicht om je e-mail adres te geven. Je e-mailadres wordt niet gekoppeld aan je ontwerpen en niet aan andere mensen gegeven. We bewaren het maximaal vijf jaar. Je kunt altijd verzoeken om je e-mailadres te laten verwijderen. Schrijf dan een bericht aan Fenne Roefs: f.d.roefs@vu.nl.</p>
+        <p>Dankjewel namens de onderzoekers!</p>
+    
+        
+        <div id="button-div" style="display: flex; justify-content: center;">
+        
+        </div>
+    </div>
+
+
+    <script type="module">
+        // import {answersToCsv, iterations} from './scripts/helper.js';
+    window.addEventListener('beforeunload', function(e) {
+    localStorage.clear();
+    });
+        function saveCheckedEmailData() {
+    var csv = 'email,followup,info,parentalConsent\n'; // Header row
+
+    function getEmailValue(form) {
+        return form.querySelector('input[type="email"]').value || 'N/A';
+    }
+
+    function getCheckboxValue(checkbox) {
+        return checkbox.checked ? 'yes' : 'no';
+    }
+
+    var form1 = document.getElementById('email_above_16');
+    if (window.getComputedStyle(form1).getPropertyValue('display') !== 'none') {
+        csv += `${getEmailValue(form1)},${getCheckboxValue(form1.querySelector('#followup'))},${getCheckboxValue(form1.querySelector('#results'))},${getCheckboxValue(form1.querySelector('#info'))},N/A\n`;
+    }
+
+    var form2 = document.getElementById('email_12_15');
+    if (window.getComputedStyle(form2).getPropertyValue('display') !== 'none') {
+        csv += `${getEmailValue(form2)},${getCheckboxValue(form2.querySelector('#followup'))},${getCheckboxValue(form2.querySelector('#results'))},${getCheckboxValue(form2.querySelector('#info'))},${getCheckboxValue(form2.querySelector('#parentalConsent'))}\n`;
+    }
+
+    var form3 = document.getElementById('email_below_12');
+    if (window.getComputedStyle(form3).getPropertyValue('display') !== 'none') {
+        csv += `${getEmailValue(form3)},${getCheckboxValue(form3.querySelector('#followup'))},${getCheckboxValue(form3.querySelector('#results'))},${getCheckboxValue(form3.querySelector('#info'))},N/A\n`;
+    }
+
+    console.log(csv);
+    return csv;
+}
+
+
+// The rest of your code remains unchanged
+
+    function checkAge() {
+            // form-ageForm: age: __
+            
+            let ageData = localStorage.getItem("form-ageForm");
+            let ageObject = JSON.parse(ageData);
+            let age = ageObject.age;
+            console.log(age);
+            if (age < 12) {
+                document.getElementById("email_below_12").style.display = "block";
+            } else if (age < 16) {
+                document.getElementById("email_12_15").style.display = "block";
+            } else {
+                document.getElementById("email_above_16").style.display = "block";
+            }
+        }
+        jatos.onLoad(function() {
+            // create 2 buttons one ending the study and one starting the next component
+            var content = document.getElementById("button-div");
+
+            var button = document.createElement("button");
+            button.innerHTML = "afsluiten";
+            // button.style.marginLeft = "5px";
+            content.appendChild(button);
+
+            button.onclick = function() {
+                // jatos.submitResultData({email: "false"});
+
+                // jatos.startNextComponent(saveCheckedEmailData());
+                // localStorage.clear();
+                jatos.endStudy(saveCheckedEmailData());
+                localStorage.clear();
+                // window.location.href='https://www.hoezegjijietsmet.nl/#About';
+            };
+        });
+
+        checkAge();
+
+
+    </script>
+</body>
+</html>

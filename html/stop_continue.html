@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Break</title>
+    <!-- uncomment for Jatos ! -->
+    <!-- <script src="jatos.js"></script> -->
+    <script>0</script>
+    <link rel="stylesheet" href="css/stop_continue.css">
+    <script>0</script>
+  </head>
+  <body>
+    <!-- <div id="bg"> -->
+        <img id="bg-fig" src="images/background/GUI_Background1.png" width="100%" height="100%" alt="">
+        <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag"></div>
+    <div id="content">
+        <h1>Weet je zeker dat je wil stoppen? <br>
+            Je zou ons erg helpen door nog een vlag te maken!
+        </h1>
+
+
+   
+        <button id="continue">Nog een vlag maken</button> <br>
+        <button id="stop">Stoppen</button>
+    </div>
+    <script type="module">
+        import { answersToCsv, iterations, questionDict, runExperiment } from "./scripts/helper.js";
+        import { replacePage } from "./scripts/stop_continue.js";
+        // jatos.onLoad(function () {
+            // jatos.submitResultData();
+            // jatos.endStudy();
+        
+        // if continue is clicked, save the state and go to the next trial
+        document.getElementById("continue").onclick = async () =>{
+            const html = "html/experiment.html";
+            await replacePage(html);
+            // let keys = Object.keys(questionDict);
+            // let experimentState = JSON.parse(localStorage.getItem('experimentState'));
+            // let currentIndex = experimentState.currentIndex;
+            // await runExperiment(keys.slice(currentIndex));     
+            // history.back();   
+        };
+
+        // if stop is clicked, finish the experiment
+        document.getElementById("stop").onclick = function () {
+            // jatos.submitResultData(answersToCsv(iterations));
+
+            jatos.startNextComponent(answersToCsv(iterations));
+            // localStorage.clear();
+        };
+    // });
+    </script>
+    <!-- <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag"> -->
+    <!-- <div id = "button-container"></div> -->
+  </body>
+</html>

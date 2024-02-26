@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introductie</title>
+    <link rel="stylesheet" href="css/instructions.css">
+    <script src="jatos.js"></script>
+    <script>0</script>
+</head>
+<body>
+    <!-- <div id="bg"></div> -->
+    <img id='bg-fig' src="images/background/GUI_Bakcground4.png" width="100%" height="100%" alt="">
+    <img id="flag" src="images/empty_flag/empty_flag.png" alt="empty_flag">
+    <div id="content">
+        <h1>Hoe zeg jij het met ... kleuren en plaatjes?</h1>
+        <p>
+            Behalve een taal met woorden is er ook een taal die bestaat uit vormen, plaatjes, en kleuren. 
+            Beeldtaal kom je echt overal tegen. Kleuren van verkeerslichten vertellen bijvoorbeeld of je moet stoppen. 
+            In je kleding zitten labels met plaatjes over hoe je het moet wassen. En ga zo maar door. 
+        </p>
+        <p>
+            Ook op plekken waar je buiten kunt zwemmen kom je beeldtaal tegen, zoals aan zee of bij een meer. 
+            Soms hangen hier vlaggen om te laten zien of het veilig is om het water in te gaan. 
+            Het is natuurlijk belangrijk dat iedereen de vlaggen goed begrijpt. 
+            Anders kunnen er ongelukken gebeuren. Daarom onderzoeken wij hoe de vlaggen er uit moeten zien, zodat ze voor iedereen duidelijk zijn. 
+        </p>
+        <h1>Wil jij ons helpen?</h1>
+        <p>
+            Doe mee en bepaal hoe de vlaggen eruit moeten zien! 
+            Welke kleuren en plaatjes denk jij dat het best werken?            
+        </p>
+    </div>
+    <script>
+        jatos.onLoad(function() {
+            // create a button that starts the study
+            let resolution = getResolution();
+            var content = document.getElementById("content");
+            if (resolution[0] < 500 || resolution[1] < 500) {
+                // var content = document.getElementById("content");
+                content.innerHTML = "";
+                var p_message_go_out = document.createElement("h1");
+                p_message_go_out.innerHTML = "Je scherm is te klein om mee te doen!";
+                content.appendChild(p_message_go_out);
+
+                var button2 = document.createElement("button");
+                button2.innerHTML = "Exit!";
+                content.appendChild(button2);
+                button2.onclick = function() {
+                    jatos.endStudy("session started with phone");
+                };
+            } else {
+            var button = document.createElement("button");
+            button.id = "button_start";
+            button.innerHTML = "Klik om mee te doen!";
+            content.appendChild(button);
+            button.onclick = function() {
+                jatos.startNextComponent("Session Started");
+            };
+        }
+            
+        });
+        function getResolution() {
+        // console.log("Your screen resolution is: " + screen.width + "x" + screen.height);
+        width = screen.width;
+        height = screen.height;
+
+        return [width, height];
+         }
+
+
+    </script>
+
+</body>
+</html>
