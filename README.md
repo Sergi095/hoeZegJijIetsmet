@@ -1,6 +1,6 @@
 # hoeZegJijIetsmet: Psychology Study at Vrije Universiteit Amsterdam
 
-This repository contains the code for a work-in-progress psychology study at Vrije Universiteit Amsterdam [hoezedjijietsmet](https://www.hoezedjijietsmet.nl). The study is designed to run with [JATOS](https://www.jatos.org/Whats-JATOS.html) (Just Another Tool for Online Studies), an open source tool for running online experiments.
+This repository contains the code for a work-in-progress psychology study at Vrije Universiteit Amsterdam [Hoe Zeg Jij Iets met](https://www.hoezegjijietsmet.nl). The study is designed to run with [JATOS](https://www.jatos.org/Whats-JATOS.html) (Just Another Tool for Online Studies), an open source tool for running online experiments.
 
 ## Getting Started
 
