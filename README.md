@@ -29,4 +29,4 @@ After accessing to your JATOS locally, you need to create a new study, and put t
 
 
 ![Creating new study example](./images/documentationScreenShot.jpeg)
-Alternatively, you can do import study and select the .jzip file included in this repository
+
